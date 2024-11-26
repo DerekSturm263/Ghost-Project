@@ -18,10 +18,10 @@ public class SceneController : SingletonBehaviour<SceneController>
 
         if (settings.Transition)
         {
-            /*foreach (InputEvent inputEvent in FindObjectsByType<InputEvent>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+            foreach (InputEvent inputEvent in FindObjectsOfType<InputEvent>())
             {
                 inputEvent.enabled = false;
-            }*/
+            }
 
             EventSystem.current.enabled = false;
 

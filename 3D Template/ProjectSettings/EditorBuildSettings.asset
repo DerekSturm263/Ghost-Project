@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MovementTest.unity
+    path: Assets/Scenes/Movement Test.unity
     guid: a0ce20cea6d2ae047ae9fe39cd873cc3
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 12f3fb4d21878f74dbe21f8a456caa69,

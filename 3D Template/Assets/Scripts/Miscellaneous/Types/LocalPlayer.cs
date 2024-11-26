@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
 [Serializable]
-public readonly struct LocalPlayer<TControls> where TControls : class, IInputActionCollection2, IDisposable, new()
+public readonly struct LocalPlayer<TControls> where TControls : IInputActionCollection2, IDisposable, new()
 {
     [SerializeField] private readonly InputUser _user;
     [SerializeField] private readonly InputDevice _device;

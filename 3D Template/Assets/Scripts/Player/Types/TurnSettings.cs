@@ -4,8 +4,7 @@ using UnityEngine;
 [Serializable]
 public struct TurnSettings
 {
-    [SerializeField] private float _minX;
-    [SerializeField] private float _maxX;
+    [SerializeField] private Range<float> _verticalRange;
     [SerializeField] private float _sensitivity;
 
     public readonly Vector2 Evaluate(Vector2 delta, Vector2 currentRot)

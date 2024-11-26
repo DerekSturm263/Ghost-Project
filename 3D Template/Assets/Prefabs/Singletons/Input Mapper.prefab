@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1706229942559745506}
-  - component: {fileID: -6111500088027148896}
+  - component: {fileID: 21876166757255558}
   m_Layer: 0
-  m_Name: Scene Controller
+  m_Name: Input Mapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6111500088027148896
+--- !u!114 &21876166757255558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8859533981756755546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b508ff35cf014c41b92df043efe0c74, type: 3}
+  m_Script: {fileID: 11500000, guid: 944f7413c537c83439697790377e0ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _settings: {fileID: 11400000, guid: a83746a0d7e087442ace7fd35883ea9a, type: 2}
