@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 752845523}
   - component: {fileID: 752845526}
   m_Layer: 0
-  m_Name: Room Generator
+  m_Name: Map Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752845522}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 181.37456, y: 250.36726, z: 189.63933}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -184,9 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2d647fc79ca33469b12a95d9becdf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rooms: []
-  _dimensions: {x: 20, y: 20}
-  _spacing: {x: 0, y: 0}
+  _default: {fileID: 11400000, guid: 21e6c5b13f7969948be0215e44483f0b, type: 2}
 --- !u!1 &1928593479
 GameObject:
   m_ObjectHideFlags: 0

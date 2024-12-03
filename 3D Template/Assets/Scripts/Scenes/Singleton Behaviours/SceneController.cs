@@ -33,6 +33,11 @@ public class SceneController : SingletonBehaviour<SceneController>
         }
     }
 
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void LoadLast(SceneLoadSettings fallback) => Load(_last ? fallback : _last);
 
     private void StartTransition(SceneLoadSettings settings)

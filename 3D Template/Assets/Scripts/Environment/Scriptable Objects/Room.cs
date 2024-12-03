@@ -1,21 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Room", menuName = "Custom/Room")]
-public class Room : ScriptableObject
+[System.Serializable]
+public struct Room
 {
-    [SerializeField] private GameObject _prefab;
-    public GameObject Prefab => _prefab;
+    [SerializeField] private Grid<bool> _layout;
+    public readonly Grid<bool> Layout => _layout;
 
-    [SerializeField] private List<Room> _north;
-    public Room RandomNorth => _north[Random.Range(0, _north.Count)];
-
-    [SerializeField] private List<Room> _south;
-    public Room RandomSouth => _south[Random.Range(0, _south.Count)];
-
-    [SerializeField] private List<Room> _east;
-    public Room RandomEast => _east[Random.Range(0, _east.Count)];
-
-    [SerializeField] private List<Room> _west;
-    public Room RandomWest => _west[Random.Range(0, _west.Count)];
+    [SerializeField] private Directional<List<Grid<bool>>> _roomsToDirections;
+    public readonly Directional<List<Grid<bool>>> RoomsToDirections => _roomsToDirections;
 }

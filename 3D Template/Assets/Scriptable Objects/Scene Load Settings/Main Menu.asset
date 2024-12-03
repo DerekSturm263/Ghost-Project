@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf63dd15eb302f84abfa697a661388b3, type: 3}
-  m_Name: Load Title
+  m_Name: Main Menu
   m_EditorClassIdentifier: 
   _scene:
-    m_SceneAsset: {fileID: 102900000, guid: f57756ff9e5fb064ab938bd7b2035101, type: 3}
-    m_SceneName: Title
+    _SceneAsset: {fileID: 102900000, guid: 3bfd38c9b0c059a40bb19e6a73aa6cb2, type: 3}
+    _SceneName: Main Menu
   _transition: {fileID: 0}
   _loadParameters:
     m_LoadSceneMode: 0

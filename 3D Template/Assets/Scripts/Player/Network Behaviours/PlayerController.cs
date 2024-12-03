@@ -64,7 +64,7 @@ public class PlayerController : NetworkBehaviour
 
     private void Update()
     {
-        _isGrounded = _groundCheck.GetHitInfo(transform);
+        _isGrounded = _groundCheck.GetHitInfo(transform).HasValue;
 
         if (_jumpTime > 0)
             UpdateJump();

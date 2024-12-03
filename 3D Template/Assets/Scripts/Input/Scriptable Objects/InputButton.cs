@@ -1,7 +1,7 @@
 ﻿using UnityEngine.InputSystem;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Input Button", menuName = "Fusion Fighters/Input Button")]
+[CreateAssetMenu(fileName = "New Input Button", menuName = "Custom/Input Button")]
 public class InputButton : ScriptableObject
 {
     [SerializeField] private Dictionary<string, Sprite> _idsToIcons;

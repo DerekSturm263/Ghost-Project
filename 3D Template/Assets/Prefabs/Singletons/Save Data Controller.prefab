@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1706229942559745506}
-  - component: {fileID: -282193911629659239}
+  - component: {fileID: -8746637812646052964}
   m_Layer: 0
-  m_Name: Player Join Controller
+  m_Name: Save Data Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-282193911629659239
+--- !u!114 &-8746637812646052964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,13 +41,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8859533981756755546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 620e0e5a8aa52784bae8267b40e3ed83, type: 3}
+  m_Script: {fileID: 11500000, guid: 6959c22ecf5eb0c4aaff34952ba099af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onJoin:
-    m_PersistentCalls:
-      m_Calls: []
-  _onLeave:
-    m_PersistentCalls:
-      m_Calls: []
-  _playerLimit: 4
+  _default: {fileID: 11400000, guid: 7466e00b3734e794a92bdd777a1e317b, type: 2}
+  _directory: SaveData
