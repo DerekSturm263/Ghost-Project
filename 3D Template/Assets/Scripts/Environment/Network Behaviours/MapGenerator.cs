@@ -19,7 +19,7 @@ public class MapGenerator : NetworkBehaviour
 
     public void Generate(MapSettings settings)
     {
-        _maps.Push(GenerationHelper.CreateMap(settings, SpawnMap, SpawnRoom, ChildRoom, out int _));
+        _maps.Push(GenerationHelper.CreateMap(settings, SpawnMap, SpawnRoom, ChildRoom, _default.Dimensions.x * _default.Dimensions.y, out int _));
     }
 
     public void Destroy() => Destroy(_maps.Pop());

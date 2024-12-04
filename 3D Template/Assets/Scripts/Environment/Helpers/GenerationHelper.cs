@@ -7,15 +7,15 @@ public static class GenerationHelper
     public delegate TRoom RoomSpawner<TRoom>(MapSettings mapSettings, Room room, System.Random random);
     public delegate void RoomMapper<TRoom, TMap>(MapSettings mapSettings, ref TMap map, ref TRoom room, Vector2Int position);
 
-    public static TMap CreateMap<TRoom, TMap>(MapSettings settings, MapSpawner<TMap> mapSpawner, RoomSpawner<TRoom> roomSpawner, RoomMapper<TRoom, TMap> roomMapper, out int seed)
+    public static TMap CreateMap<TRoom, TMap>(MapSettings settings, MapSpawner<TMap> mapSpawner, RoomSpawner<TRoom> roomSpawner, RoomMapper<TRoom, TMap> roomMapper, int generations, out int seed)
     {
         seed = settings.Seed;
         System.Random random = new(seed);
 
-        return SpawnMap(settings, CalculateMap(settings, random), mapSpawner, roomSpawner, roomMapper, random);
+        return SpawnMap(settings, CalculateMap(settings, random, generations), mapSpawner, roomSpawner, roomMapper, random);
     }
 
-    private static EntropicList<Room>[,] CalculateMap(MapSettings settings, System.Random random)
+    private static EntropicList<Room>[,] CalculateMap(MapSettings settings, System.Random random, int generations)
     {
         // Initialize the possibilities of each room.
         EntropicList<Room>[,] possibilities = InitializePossibilities(settings);
@@ -25,18 +25,29 @@ public static class GenerationHelper
         {
             for (int x = 0; x < settings.Dimensions.x; ++x)
             {
+                if (x + y * settings.Dimensions.x >= generations)
+                    return possibilities;
+
                 // Randomly select the room based on its possibilities.
                 Room room = possibilities[x, y].Get(random);
 
                 // Reduce the possibilities for each of the neighbors.
                 if (y - 1 >= 0)
                     possibilities[x, y - 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.North).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
+                if (y - 1 >= 0 && x + 1 < settings.Dimensions.x)
+                    possibilities[x + 1, y - 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.NorthEast).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
                 if (x + 1 < settings.Dimensions.x)
                     possibilities[x + 1, y].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.East).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
+                if (x + 1 < settings.Dimensions.x && y + 1 < settings.Dimensions.y)
+                    possibilities[x + 1, y + 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.SouthEast).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
                 if (y + 1 < settings.Dimensions.y)
                     possibilities[x, y + 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.South).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
+                if (y + 1 < settings.Dimensions.y && x - 1 >= 0)
+                    possibilities[x - 1, y + 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.SouthWest).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
                 if (x - 1 >= 0)
                     possibilities[x - 1, y].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.West).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
+                if (x - 1 >= 0 && y - 1 >= 0)
+                    possibilities[x - 1, y - 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.NorthWest).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
             }
         }
 
