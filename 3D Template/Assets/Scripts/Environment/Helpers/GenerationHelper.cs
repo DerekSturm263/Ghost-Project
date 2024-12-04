@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class GenerationHelper
@@ -25,34 +26,41 @@ public static class GenerationHelper
         {
             for (int x = 0; x < settings.Dimensions.x; ++x)
             {
+                // If the number of generations has passed, end it early.
                 if (x + y * settings.Dimensions.x >= generations)
                     return possibilities;
 
-                // Randomly select the room based on its possibilities.
-                Room room = possibilities[x, y].Get(random);
-
-                // Reduce the possibilities for each of the neighbors.
-                if (y - 1 >= 0)
-                    possibilities[x, y - 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.North).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
-                if (y - 1 >= 0 && x + 1 < settings.Dimensions.x)
-                    possibilities[x + 1, y - 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.NorthEast).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
-                if (x + 1 < settings.Dimensions.x)
-                    possibilities[x + 1, y].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.East).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
-                if (x + 1 < settings.Dimensions.x && y + 1 < settings.Dimensions.y)
-                    possibilities[x + 1, y + 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.SouthEast).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
-                if (y + 1 < settings.Dimensions.y)
-                    possibilities[x, y + 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.South).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
-                if (y + 1 < settings.Dimensions.y && x - 1 >= 0)
-                    possibilities[x - 1, y + 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.SouthWest).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
-                if (x - 1 >= 0)
-                    possibilities[x - 1, y].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.West).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
-                if (x - 1 >= 0 && y - 1 >= 0)
-                    possibilities[x - 1, y - 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.NorthWest).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
+                // Assign the given space.
+                AssignSpace(settings, possibilities, new(x, y), random);
             }
         }
 
         // Return the new list of possibilities, which should only contain a single possibility per slot.
         return possibilities;
+    }
+
+    public static void AssignSpace(MapSettings settings, EntropicList<Room>[,] possibilities, Vector2Int position, System.Random random)
+    {
+        // Randomly select the room based on its possibilities.
+        Room room = possibilities[position.x, position.y].Get(random);
+
+        // Reduce the possibilities for each of the neighbors.
+        if (position.y - 1 >= 0)
+            possibilities[position.x, position.y - 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.North).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
+        if (position.y - 1 >= 0 && position.x + 1 < settings.Dimensions.x)
+            possibilities[position.x + 1, position.y - 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.NorthEast).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
+        if (position.x + 1 < settings.Dimensions.x)
+            possibilities[position.x + 1, position.y].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.East).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
+        if (position.x + 1 < settings.Dimensions.x && position.y + 1 < settings.Dimensions.y)
+            possibilities[position.x + 1, position.y + 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.SouthEast).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
+        if (position.y + 1 < settings.Dimensions.y)
+            possibilities[position.x, position.y + 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.South).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
+        if (position.y + 1 < settings.Dimensions.y && position.x - 1 >= 0)
+            possibilities[position.x - 1, position.y + 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.SouthWest).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
+        if (position.x - 1 >= 0)
+            possibilities[position.x - 1, position.y].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.West).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
+        if (position.x - 1 >= 0 && position.y - 1 >= 0)
+            possibilities[position.x - 1, position.y - 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.NorthWest).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
     }
 
     private static EntropicList<Room>[,] InitializePossibilities(MapSettings settings)
@@ -66,7 +74,24 @@ public static class GenerationHelper
             for (int x = 0; x < settings.Dimensions.x; ++x)
             {
                 // Assign a new room list to each slot in the array.
-                possibilities[x, y] = new(settings.Rooms);
+                if (x == 0 && y == 0)
+                    possibilities[x, y] = new(new() { settings.Rooms[3] });
+                else if (x == settings.Dimensions.x - 1 && y == 0)
+                    possibilities[x, y] = new(new() { settings.Rooms[0] });
+                else if (x == settings.Dimensions.x - 1 && y == settings.Dimensions.y - 1)
+                    possibilities[x, y] = new(new() { settings.Rooms[1] });
+                else if (x == 0 && y == settings.Dimensions.y - 1)
+                    possibilities[x, y] = new(new() { settings.Rooms[2] });
+                else if (x == 0)
+                    possibilities[x, y] = new(new() { settings.Rooms[7] });
+                else if (x == settings.Dimensions.x - 1)
+                    possibilities[x, y] = new(new() { settings.Rooms[5] });
+                else if (y == 0)
+                    possibilities[x, y] = new(new() { settings.Rooms[4] });
+                else if (y == settings.Dimensions.y - 1)
+                    possibilities[x, y] = new(new() { settings.Rooms[6] });
+                else
+                    possibilities[x, y] = new(settings.Rooms);
             }
         }
 

@@ -240,8 +240,9 @@ MonoBehaviour:
     _multiplier: 0
     _topSpeed: 0
   _turnSettings:
-    _minX: -50
-    _maxX: 50
+    _verticalRange:
+      _min: -50
+      _max: 50
     _sensitivity: 10
   _runSettings:
     _runMultiplier: 0
@@ -279,12 +280,26 @@ MonoBehaviour:
   _captureSettings:
     _parameterName: IsCapturing
   _groundCheck:
-    _offset: {x: 0, y: -1, z: 0}
-    _size: {x: 1, y: 0.1, z: 1}
-    _rotation: {x: 0, y: 0, z: 0, w: 0}
+    _direction: {x: 0, y: 0, z: 0}
+    _maxDistance: 0
     _layerMask:
       serializedVersion: 2
       m_Bits: 8
+    _triggerInteraction: 0
+    _settings:
+      _value1:
+        _offset: {x: 0, y: 0, z: 0}
+        _size: {x: 0, y: 0, z: 0}
+        _rotation: {x: 0, y: 0, z: 0, w: 0}
+      _value2:
+        _offset: {x: 0, y: 0, z: 0}
+        _radius: 0
+      _value3:
+        _points:
+          _min: {x: 0, y: 0, z: 0}
+          _max: {x: 0, y: 0, z: 0}
+        _radius: 0
+      _index: 1
 --- !u!114 &-5683663941289790903
 MonoBehaviour:
   m_ObjectHideFlags: 0

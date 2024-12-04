@@ -66,6 +66,9 @@ public class EntropicList<T> : ICollection<T>, IEnumerable<T>, IEnumerable, IRea
 
     public void Filter(Func<T, bool> predicate, T defaultT, FilterMode filterMode)
     {
+        if (_possibilities.Count == 1)
+            return;
+
         List<T> possibilities = new();
 
         foreach (var item in _possibilities)

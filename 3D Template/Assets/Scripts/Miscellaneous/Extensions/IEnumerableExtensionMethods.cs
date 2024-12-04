@@ -12,4 +12,14 @@ public static class IEnumerableExtensionMethods
 
         return element;
     }
+
+    public static T FirstOrDefault<T>(this IEnumerable<T> collection, T defaultT)
+    {
+        T element = collection.FirstOrDefault();
+
+        if (EqualityComparer<T>.Default.Equals(element))
+            return defaultT;
+
+        return element;
+    }
 }

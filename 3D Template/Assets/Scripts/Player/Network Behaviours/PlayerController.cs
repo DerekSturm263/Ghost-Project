@@ -34,7 +34,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private FightSettings _fightSettings;
     [SerializeField] private CaptureSettings _captureSettings;
 
-    [SerializeField] private BoxcastHelper _groundCheck;
+    [SerializeField] private CastHelper _groundCheck;
     private bool _isGrounded;
 
     private void Awake()
