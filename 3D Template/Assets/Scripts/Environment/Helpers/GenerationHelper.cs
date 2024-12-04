@@ -5,11 +5,12 @@ public static class GenerationHelper
 {
     public delegate TMap MapSpawner<TMap>(MapSettings mapSettings, EntropicList<Room>[,] map, System.Random random);
     public delegate TRoom RoomSpawner<TRoom>(MapSettings mapSettings, Room room, System.Random random);
-    public delegate void RoomMapper<TRoom, TMap>(MapSettings mapSettings, TMap map, TRoom room, Vector2Int position);
+    public delegate void RoomMapper<TRoom, TMap>(MapSettings mapSettings, ref TMap map, ref TRoom room, Vector2Int position);
 
-    public static TMap CreateMap<TRoom, TMap>(MapSettings settings, MapSpawner<TMap> mapSpawner, RoomSpawner<TRoom> roomSpawner, RoomMapper<TRoom, TMap> roomMapper)
+    public static TMap CreateMap<TRoom, TMap>(MapSettings settings, MapSpawner<TMap> mapSpawner, RoomSpawner<TRoom> roomSpawner, RoomMapper<TRoom, TMap> roomMapper, out int seed)
     {
-        System.Random random = new(settings.Seed);
+        seed = settings.Seed;
+        System.Random random = new(seed);
 
         return SpawnMap(settings, CalculateMap(settings, random), mapSpawner, roomSpawner, roomMapper, random);
     }
@@ -71,7 +72,7 @@ public static class GenerationHelper
             for (int x = 0; x < settings.Dimensions.x; ++x)
             {
                 TRoom roomInstance = roomSpawner.Invoke(settings, map[x, y].Get(random), random);
-                roomMapper.Invoke(settings, mapInstance, roomInstance, new(x, y));
+                roomMapper.Invoke(settings, ref mapInstance, ref roomInstance, new(x, y));
             }
         }
 

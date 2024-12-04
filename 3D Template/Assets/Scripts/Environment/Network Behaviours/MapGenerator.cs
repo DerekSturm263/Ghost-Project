@@ -13,8 +13,7 @@ public class MapGenerator : NetworkBehaviour
 
     public void Generate(MapSettings settings)
     {
-        GameObject newMap = GenerationHelper.CreateMap(settings, SpawnMap, SpawnRoom, ChildRoom);
-        _maps.Push(newMap);
+        _maps.Push(GenerationHelper.CreateMap(settings, SpawnMap, SpawnRoom, ChildRoom, out int _));
     }
 
     [ContextMenu("Destroy")]
@@ -28,12 +27,12 @@ public class MapGenerator : NetworkBehaviour
     public GameObject SpawnRoom(MapSettings settings, Room room, System.Random random)
     {
         GameObject roomGO = Instantiate(settings.RoomPrefab);
-
         DecorateRoom(roomGO, room, random);
+
         return roomGO;
     }
 
-    public void ChildRoom(MapSettings settings, GameObject map, GameObject room, Vector2Int position)
+    public void ChildRoom(MapSettings settings, ref GameObject map, ref GameObject room, Vector2Int position)
     {
         room.transform.SetParent(map.transform, false);
         room.transform.localPosition = new(position.x * settings.Spacing.x, 0, position.y * settings.Spacing.y);
