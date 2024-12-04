@@ -7,6 +7,12 @@ using UnityEngine;
 [Serializable]
 public class EntropicList<T> : ICollection<T>, IEnumerable<T>, IEnumerable, IReadOnlyCollection<T>, ICollection
 {
+    public enum FilterMode
+    {
+        In,
+        Out
+    }
+
     [SerializeField] private List<T> _possibilities;
 
     public EntropicList()
@@ -58,35 +64,26 @@ public class EntropicList<T> : ICollection<T>, IEnumerable<T>, IEnumerable, IRea
         return _possibilities.FirstOrDefault();
     }
 
-    public void FilterOut(Func<T, bool> predicate)
+    public void Filter(Func<T, bool> predicate, T defaultT, FilterMode filterMode)
     {
-        List<T> possibilities = new(_possibilities);
+        List<T> possibilities = new();
 
         foreach (var item in _possibilities)
         {
-            if (!predicate(item))
-                possibilities.Add(item);
+            switch (filterMode)
+            {
+                case FilterMode.In:
+                    if (predicate(item))
+                        possibilities.Add(item);
+                    break;
+
+                case FilterMode.Out:
+                    if (!predicate(item))
+                        possibilities.Add(item);
+                    break;
+            }
         }
 
-        _possibilities = possibilities;
-
-        if (_possibilities.Count == 0)
-            throw new Exception("Entropic List cannot contain zero elements");
-    }
-
-    public void FilterIn(Func<T, bool> predicate)
-    {
-        List<T> possibilities = new(_possibilities);
-
-        foreach (var item in _possibilities)
-        {
-            if (predicate(item))
-                possibilities.Add(item);
-        }
-
-        _possibilities = possibilities;
-
-        if (_possibilities.Count == 0)
-            throw new Exception("Entropic List cannot contain zero elements");
+        _possibilities = possibilities.Count > 0 ? possibilities : new() { defaultT };
     }
 }

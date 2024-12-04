@@ -7,6 +7,9 @@ public class MapSettings : ScriptableObject
     [SerializeField] private List<Room> _rooms;
     public List<Room> Rooms => _rooms;
 
+    [SerializeField] private EntropicList<Room>.FilterMode _filterMode;
+    public EntropicList<Room>.FilterMode FilterMode => _filterMode;
+
     [SerializeField] GameObject _roomPrefab;
     public GameObject RoomPrefab => _roomPrefab;
 

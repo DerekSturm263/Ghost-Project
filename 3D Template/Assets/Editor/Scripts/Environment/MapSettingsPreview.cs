@@ -16,7 +16,7 @@ public class MapSettingsPreview : ObjectPreview
 
         if (_preview)
         {
-            GUI.DrawTexture(r, _preview, ScaleMode.ScaleToFit, true, 1);
+            GUI.DrawTexture(r, _preview, ScaleMode.ScaleToFit, true);
         }
 
         Rect testPosition = new(r.x, r.height - EditorGUIUtility.singleLineHeight, r.width, EditorGUIUtility.singleLineHeight);
@@ -28,7 +28,10 @@ public class MapSettingsPreview : ObjectPreview
 
     public Texture2D CreateMapTexture(MapSettings mapSettings, EntropicList<Room>[,] map, System.Random random)
     {
-        return new(mapSettings.Dimensions.x * 3, mapSettings.Dimensions.y * 3);
+        return new(mapSettings.Dimensions.x * 3, mapSettings.Dimensions.y * 3)
+        {
+            filterMode = FilterMode.Point
+        };
     }
 
     public Texture2D CreateRoomTexture(MapSettings settings, Room room, System.Random random)

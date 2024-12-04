@@ -1,7 +1,9 @@
+using System;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public struct Grid<T>
+public struct Grid<T> : IEquatable<Grid<T>>
 {
     [SerializeField][HideInInspector] private T[] _elements;
     [SerializeField][HideInInspector] private int _width, _height;
@@ -17,5 +19,10 @@ public struct Grid<T>
         _elements = new T[width * height];
         _width = width;
         _height = height;
+    }
+
+    public readonly bool Equals(Grid<T> other)
+    {
+        return _width == other._width && _height == other._height && Enumerable.SequenceEqual(_elements, other._elements);
     }
 }

@@ -30,13 +30,13 @@ public static class GenerationHelper
 
                 // Reduce the possibilities for each of the neighbors.
                 if (y + 1 < settings.Dimensions.y)
-                    possibilities[x, y + 1].FilterOut(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.North).Contains(item.Layout));
+                    possibilities[x, y + 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.North).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
                 if (x - 1 >= 0)
-                    possibilities[x - 1, y].FilterOut(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.East).Contains(item.Layout));
+                    possibilities[x - 1, y].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.East).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
                 if (y - 1 >= 0)
-                    possibilities[x, y - 1].FilterOut(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.South).Contains(item.Layout));
+                    possibilities[x, y - 1].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.South).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
                 if (x + 1 < settings.Dimensions.x)
-                    possibilities[x + 1, y].FilterOut(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.West).Contains(item.Layout));
+                    possibilities[x + 1, y].Filter(item => room.RoomsToDirections.GetFromDirection(Directional<List<Grid<bool>>>.Direction.West).Contains(item.Layout), settings.Rooms[^1], settings.FilterMode);
             }
         }
 

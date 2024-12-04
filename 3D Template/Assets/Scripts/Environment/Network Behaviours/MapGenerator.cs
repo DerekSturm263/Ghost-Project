@@ -9,14 +9,19 @@ public class MapGenerator : NetworkBehaviour
     private readonly Stack<GameObject> _maps = new();
 
     [ContextMenu("Generate")]
-    public void Generate() => Generate(_default);
+    public void Generate()
+    {
+        if (_maps.Count > 0)
+            Destroy();
+        
+        Generate(_default);
+    }
 
     public void Generate(MapSettings settings)
     {
         _maps.Push(GenerationHelper.CreateMap(settings, SpawnMap, SpawnRoom, ChildRoom, out int _));
     }
 
-    [ContextMenu("Destroy")]
     public void Destroy() => Destroy(_maps.Pop());
 
     public GameObject SpawnMap(MapSettings mapSettings, EntropicList<Room>[,] map, System.Random random)
