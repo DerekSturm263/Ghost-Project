@@ -40,14 +40,14 @@ public class MapGenerator : NetworkBehaviour
     public void ChildRoom(MapSettings settings, ref GameObject map, ref GameObject room, Vector2Int position)
     {
         room.transform.SetParent(map.transform, false);
-        room.transform.localPosition = new(position.x * settings.Spacing.x, 0, position.y * settings.Spacing.y);
+        room.transform.localPosition = new(position.x * settings.Spacing.x, 0, -position.y * settings.Spacing.y);
     }
 
     public void DecorateRoom(GameObject roomGO, Room room, System.Random random)
     {
         roomGO.transform.GetChild(1).gameObject.SetActive(room.Layout[1, 0]);
-        roomGO.transform.GetChild(2).gameObject.SetActive(room.Layout[1, 2]);
-        roomGO.transform.GetChild(3).gameObject.SetActive(room.Layout[2, 1]);
+        roomGO.transform.GetChild(2).gameObject.SetActive(room.Layout[2, 1]);
+        roomGO.transform.GetChild(3).gameObject.SetActive(room.Layout[1, 2]);
         roomGO.transform.GetChild(4).gameObject.SetActive(room.Layout[0, 1]);
     }
 }

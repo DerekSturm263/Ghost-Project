@@ -43,7 +43,7 @@ public class MapSettingsPreview : ObjectPreview
         {
             for (int x = 0; x < roomTexture.width; ++x)
             {
-                colors[y * roomTexture.width + x] = room.Layout[x, y] ? Color.white : Color.black;
+                colors[y * roomTexture.width + x] = room.Layout[x, 2 - y] ? Color.white : Color.clear;
             }
         }
         
@@ -55,7 +55,7 @@ public class MapSettingsPreview : ObjectPreview
 
     public void ChildRoom(MapSettings settings, ref Texture2D map, ref Texture2D room, Vector2Int position)
     {
-        map.SetPixels32(position.x * room.width, position.y * room.height, room.width, room.height, room.GetPixels32());
+        map.SetPixels32(position.x * room.width, (settings.Dimensions.y - 1 - position.y) * room.height, room.width, room.height, room.GetPixels32());
         map.Apply();
     }
 }

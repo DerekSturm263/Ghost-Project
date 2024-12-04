@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Default
   m_EditorClassIdentifier: 
   _rooms:
-  - _layout:
+  - _name: NE Corner
+    _layout:
       _elements: 010101000001000001
       _width: 3
       _height: 3
@@ -25,6 +26,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northEast: []
       _east:
       - _elements: 010101000000000000
         _width: 3
@@ -32,6 +37,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southEast: []
       _south:
       - _elements: 010001010001010001
         _width: 3
@@ -45,6 +54,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southWest: []
       _west:
       - _elements: 010101000000010101
         _width: 3
@@ -58,7 +71,12 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-  - _layout:
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northWest: []
+  - _name: SE Corner
+    _layout:
       _elements: 000001000001010101
       _width: 3
       _height: 3
@@ -76,6 +94,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northEast: []
       _east:
       - _elements: 000000000000010101
         _width: 3
@@ -83,6 +105,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southEast: []
       _south:
       - _elements: 000001000001000001
         _width: 3
@@ -90,6 +116,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southWest: []
       _west:
       - _elements: 010000010000010101
         _width: 3
@@ -103,7 +133,12 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-  - _layout:
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northWest: []
+  - _name: SW Corner
+    _layout:
       _elements: 010000010000010101
       _width: 3
       _height: 3
@@ -121,6 +156,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northEast: []
       _east:
       - _elements: 000001000001010101
         _width: 3
@@ -134,6 +173,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southEast: []
       _south:
       - _elements: 010000010000010000
         _width: 3
@@ -141,6 +184,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southWest: []
       _west:
       - _elements: 000000000000010101
         _width: 3
@@ -148,7 +195,12 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-  - _layout:
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northWest: []
+  - _name: NW Corner
+    _layout:
       _elements: 010101010000010000
       _width: 3
       _height: 3
@@ -160,6 +212,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northEast: []
       _east:
       - _elements: 010101000001000001
         _width: 3
@@ -173,6 +229,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southEast: []
       _south:
       - _elements: 010000010000010101
         _width: 3
@@ -186,6 +246,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southWest: []
       _west:
       - _elements: 010101000000000000
         _width: 3
@@ -193,7 +257,12 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-  - _layout:
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northWest: []
+  - _name: N Wall
+    _layout:
       _elements: 010101000000000000
       _width: 3
       _height: 3
@@ -202,6 +271,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northEast: []
       _east:
       - _elements: 010101000000000000
         _width: 3
@@ -209,10 +282,18 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southEast: []
       _south:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southWest: []
       _west:
       - _elements: 010101000000000000
         _width: 3
@@ -220,7 +301,12 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-  - _layout:
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northWest: []
+  - _name: E Wall
+    _layout:
       _elements: 000001000001000001
       _width: 3
       _height: 3
@@ -232,10 +318,18 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northEast: []
       _east:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southEast: []
       _south:
       - _elements: 000001000001000001
         _width: 3
@@ -243,11 +337,20 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southWest: []
       _west:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-  - _layout:
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northWest: []
+  - _name: S Wall
+    _layout:
       _elements: 000000000000010101
       _width: 3
       _height: 3
@@ -256,6 +359,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northEast: []
       _east:
       - _elements: 000000000000010101
         _width: 3
@@ -263,10 +370,18 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southEast: []
       _south:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southWest: []
       _west:
       - _elements: 000000000000010101
         _width: 3
@@ -274,7 +389,12 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-  - _layout:
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northWest: []
+  - _name: W Wall
+    _layout:
       _elements: 010000010000010000
       _width: 3
       _height: 3
@@ -286,10 +406,18 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northEast: []
       _east:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southEast: []
       _south:
       - _elements: 010000010000010000
         _width: 3
@@ -297,11 +425,20 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southWest: []
       _west:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-  - _layout:
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northWest: []
+  - _name: NS Hall
+    _layout:
       _elements: 010101000000010101
       _width: 3
       _height: 3
@@ -310,6 +447,10 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northEast: []
       _east:
       - _elements: 010101000000010101
         _width: 3
@@ -326,10 +467,18 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southEast: []
       _south:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southWest: []
       _west:
       - _elements: 010101000000010101
         _width: 3
@@ -346,7 +495,12 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-  - _layout:
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northWest: []
+  - _name: EW Hall
+    _layout:
       _elements: 010001010001010001
       _width: 3
       _height: 3
@@ -367,10 +521,18 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northEast: []
       _east:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southEast: []
       _south:
       - _elements: 010001010001010001
         _width: 3
@@ -387,11 +549,20 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _southWest: []
       _west:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-  - _layout:
+      - _elements: 000000000000000000
+        _width: 3
+        _height: 3
+      _northWest: []
+  - _name: Empty
+    _layout:
       _elements: 000000000000000000
       _width: 3
       _height: 3
@@ -400,33 +571,26 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-      - _elements: 010101000000000000
-        _width: 3
-        _height: 3
+      _northEast: []
       _east:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-      - _elements: 000001000001000001
-        _width: 3
-        _height: 3
+      _southEast: []
       _south:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-      - _elements: 000000000000010101
-        _width: 3
-        _height: 3
+      _southWest: []
       _west:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
-      - _elements: 010000010000010000
-        _width: 3
-        _height: 3
+      _northWest: []
+  _filterMode: 1
   _roomPrefab: {fileID: 6756081523301850608, guid: afbe83c3d44f0f24faaf1df6eda8bf48,
     type: 3}
-  _dimensions: {x: 100, y: 100}
+  _dimensions: {x: 12, y: 6}
   _spacing: {x: 5, y: 5}
   _seed:
     _nonNullValue: 0

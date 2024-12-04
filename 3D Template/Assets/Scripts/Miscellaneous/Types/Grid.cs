@@ -1,9 +1,8 @@
-using System;
 using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public struct Grid<T> : IEquatable<Grid<T>>
+public struct Grid<T> : System.IEquatable<Grid<T>>
 {
     [SerializeField][HideInInspector] private T[] _elements;
     [SerializeField][HideInInspector] private int _width, _height;
