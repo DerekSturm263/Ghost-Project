@@ -6,7 +6,7 @@ public struct Variant<T1, T2>
     [SerializeField] private T1 _value1;
     [SerializeField] private T2 _value2;
 
-    [SerializeField][HideInInspector] private int _index;
+    [SerializeField] private int _index;
 
     public readonly T Get<T>()
     {
@@ -36,7 +36,7 @@ public struct Variant<T1, T2, T3>
     [SerializeField] private T2 _value2;
     [SerializeField] private T3 _value3;
 
-    [SerializeField][HideInInspector] private int _index;
+    [SerializeField] private int _index;
 
     public readonly T Get<T>()
     {
@@ -69,7 +69,7 @@ public struct Variant<T1, T2, T3, T4>
     [SerializeField] private T3 _value3;
     [SerializeField] private T4 _value4;
 
-    [SerializeField][HideInInspector] private int _index;
+    [SerializeField] private int _index;
 
     public readonly T Get<T>()
     {

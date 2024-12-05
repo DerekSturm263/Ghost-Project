@@ -48,4 +48,8 @@ public struct Directional<T>
         _west = west;
         _northWest = northWest;
     }
+
+    public readonly Directional<T> Rotate90() => new(_west, _northWest, _north, _northEast, _east, _southEast, _south, _southWest);
+    public readonly Directional<T> Rotate180() => new(_south, _southWest, _west, _northWest, _north, _northEast, _east, _southEast);
+    public readonly Directional<T> Rotate270() => new(_east, _southEast, _south, _southWest, _west, _northWest, _north, _northEast);
 }
