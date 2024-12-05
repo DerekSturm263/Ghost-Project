@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public struct Room
+public struct Room : IRotatable<Room>
 {
     [SerializeField] private string _name;
     public readonly string Name => _name;
@@ -21,7 +22,7 @@ public struct Room
         _roomsToDirections = roomsToDirections;
     }
 
-    public readonly Room Rotate90() => new(_name + "(90)", _layout.Rotate90(), _roomsToDirections.Rotate90());
-    public readonly Room Rotate180() => new(_name + "(180)", _layout.Rotate180(), _roomsToDirections.Rotate180());
-    public readonly Room Rotate270() => new(_name + "(270)", _layout.Rotate270(), _roomsToDirections.Rotate270());
+    public readonly Room Rotate90() => new($"{_name} (90)", _layout.Rotate90(), _roomsToDirections.Rotate90().Select(item => item.Select(item2 => item2.Rotate90()).ToList()).ToDirectional());
+    public readonly Room Rotate180() => new($"{_name} (180)", _layout.Rotate180(), _roomsToDirections.Rotate180().Select(item => item.Select(item2 => item2.Rotate180()).ToList()).ToDirectional());
+    public readonly Room Rotate270() => new($"{_name} (270)", _layout.Rotate270(), _roomsToDirections.Rotate270().Select(item => item.Select(item2 => item2.Rotate270()).ToList()).ToDirectional());
 }

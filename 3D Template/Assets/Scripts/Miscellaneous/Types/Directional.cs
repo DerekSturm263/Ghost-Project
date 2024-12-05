@@ -1,7 +1,10 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct Directional<T>
+[Serializable]
+public struct Directional<T> : IEnumerable<T>, IEnumerable, IReadOnlyCollection<T>, ICollection, IRotatable<Directional<T>>
 {
     public enum Direction
     {
@@ -24,7 +27,11 @@ public struct Directional<T>
     [SerializeField] private T _west;
     [SerializeField] private T _northWest;
 
-    public readonly T GetFromDirection(Direction direction) => direction switch
+    public readonly int Count => 8;
+    public readonly bool IsSynchronized => throw new NotImplementedException();
+    public readonly object SyncRoot => throw new NotImplementedException();
+
+    public readonly T this[Direction direction] => direction switch
     {
         Direction.North => _north,
         Direction.NorthEast => _northEast,
@@ -34,7 +41,7 @@ public struct Directional<T>
         Direction.SouthWest => _southWest,
         Direction.West => _west,
         Direction.NorthWest => _northWest,
-        _ => default
+        _ => throw new IndexOutOfRangeException()
     };
 
     public Directional(T north, T northEast, T east, T southEast, T south, T southWest, T west, T northWest)
@@ -52,4 +59,26 @@ public struct Directional<T>
     public readonly Directional<T> Rotate90() => new(_west, _northWest, _north, _northEast, _east, _southEast, _south, _southWest);
     public readonly Directional<T> Rotate180() => new(_south, _southWest, _west, _northWest, _north, _northEast, _east, _southEast);
     public readonly Directional<T> Rotate270() => new(_east, _southEast, _south, _southWest, _west, _northWest, _north, _northEast);
+
+    public readonly void CopyTo(Array array, int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public readonly IEnumerator<T> GetEnumerator()
+    {
+        yield return _north;
+        yield return _northEast;
+        yield return _east;
+        yield return _southEast;
+        yield return _south;
+        yield return _southWest;
+        yield return _west;
+        yield return _northWest;
+    }
+
+    readonly IEnumerator IEnumerable.GetEnumerator()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -380,9 +380,6 @@ MonoBehaviour:
         _width: 3
         _height: 3
       _northWest:
-      - _elements: 010101010000010000
-        _width: 3
-        _height: 3
       - _elements: 010101000000000000
         _width: 3
         _height: 3
@@ -405,9 +402,6 @@ MonoBehaviour:
       _height: 3
     _roomsToDirections:
       _north:
-      - _elements: 010101000000000000
-        _width: 3
-        _height: 3
       - _elements: 000001000001000001
         _width: 3
         _height: 3
@@ -559,8 +553,8 @@ MonoBehaviour:
   _filterMode: 0
   _roomPrefab: {fileID: 6756081523301850608, guid: afbe83c3d44f0f24faaf1df6eda8bf48,
     type: 3}
-  _dimensions: {x: 8, y: 6}
+  _dimensions: {x: 100, y: 12}
   _spacing: {x: 5, y: 5}
   _seed:
-    _nonNullValue: 0
+    _nonNullValue: 10000
     _hasValue: 0

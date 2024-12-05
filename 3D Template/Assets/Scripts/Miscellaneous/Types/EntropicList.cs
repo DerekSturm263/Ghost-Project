@@ -20,7 +20,7 @@ public class EntropicList<T> : ICollection<T>, IEnumerable<T>, IEnumerable, IRea
         _possibilities = new();
     }
 
-    public EntropicList(List<T> possibilities)
+    public EntropicList(IEnumerable<T> possibilities)
     {
         _possibilities = new(possibilities);
     }
@@ -56,15 +56,15 @@ public class EntropicList<T> : ICollection<T>, IEnumerable<T>, IEnumerable, IRea
     public IEnumerator<T> GetEnumerator() => ((IEnumerable<T>)_possibilities).GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)_possibilities).GetEnumerator();
 
-    public T Get(System.Random random)
+    public T Get(System.Random random, T defaultT)
     {
         if (_possibilities.Count > 0)
             _possibilities = new() { _possibilities[random.Next(0, _possibilities.Count)] };
 
-        return _possibilities.FirstOrDefault();
+        return _possibilities.FirstOrDefault(defaultT);
     }
 
-    public void Filter(Func<T, bool> predicate, T defaultT, FilterMode filterMode)
+    public void Filter(Func<T, bool> predicate, FilterMode filterMode)
     {
         if (_possibilities.Count == 1)
             return;
@@ -87,6 +87,6 @@ public class EntropicList<T> : ICollection<T>, IEnumerable<T>, IEnumerable, IRea
             }
         }
 
-        _possibilities = possibilities.Count > 0 ? possibilities : new() { defaultT };
+        _possibilities = possibilities;
     }
 }

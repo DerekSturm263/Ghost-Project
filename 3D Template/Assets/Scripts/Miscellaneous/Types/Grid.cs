@@ -3,7 +3,7 @@ using System.Text;
 using UnityEngine;
 
 [System.Serializable]
-public struct Grid<T> : System.IEquatable<Grid<T>>
+public struct Grid<T> : System.IEquatable<Grid<T>>, IRotatable<Grid<T>>
 {
     [SerializeField][HideInInspector] private T[] _elements;
     [SerializeField][HideInInspector] private int _width, _height;

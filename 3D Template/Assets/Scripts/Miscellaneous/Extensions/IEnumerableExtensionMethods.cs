@@ -22,4 +22,14 @@ public static class IEnumerableExtensionMethods
 
         return element;
     }
+
+    public static Directional<T> ToDirectional<T>(this IEnumerable<T> collection)
+    {
+        return new(collection.ElementAt(0), collection.ElementAt(1), collection.ElementAt(2), collection.ElementAt(3), collection.ElementAt(4), collection.ElementAt(5), collection.ElementAt(6), collection.ElementAt(7));
+    }
+
+    public static EntropicList<T> ToEntropicList<T>(this IEnumerable<T> collection)
+    {
+        return new(collection);
+    }
 }
