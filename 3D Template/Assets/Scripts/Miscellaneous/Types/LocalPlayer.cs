@@ -24,7 +24,7 @@ public readonly struct LocalPlayer<TControls> where TControls : IInputActionColl
         }
         else
         {
-            _user = new();
+            _user = InputUser.CreateUserWithoutPairedDevices();
             _device = InputSystem.devices.FirstOrDefault();
             _controls = new();
         }

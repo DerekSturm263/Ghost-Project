@@ -64,12 +64,26 @@ public struct CastHelper
         }
     }
 
+    [System.Serializable]
+    public struct LineCastSettings
+    {
+        public readonly RaycastHit? GetHitInfo(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction)
+        {
+            return null;
+        }
+
+        public readonly void Draw(Vector3 position)
+        {
+
+        }
+    }
+
     [SerializeField] private Vector3 _direction;
     [SerializeField] private float _maxDistance;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private QueryTriggerInteraction _triggerInteraction;
 
-    [SerializeField] private Variant<BoxCastSettings, SphereCastSettings, CapsuleCastSettings> _settings;
+    [SerializeField] private Variant<BoxCastSettings, SphereCastSettings, CapsuleCastSettings, LineCastSettings> _settings;
 
     public readonly RaycastHit? GetHitInfo(Transform transform)
     {

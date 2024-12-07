@@ -49,5 +49,11 @@ public class MapGenerator : NetworkBehaviour
         roomGO.transform.GetChild(2).gameObject.SetActive(room.Layout[2, 1]);
         roomGO.transform.GetChild(3).gameObject.SetActive(room.Layout[1, 2]);
         roomGO.transform.GetChild(4).gameObject.SetActive(room.Layout[0, 1]);
+
+        PlaceObject[] objectPlacers = roomGO.GetComponentsInChildren<PlaceObject>(false);
+        foreach (PlaceObject obj in objectPlacers)
+        {
+            obj.Place(random);
+        }
     }
 }

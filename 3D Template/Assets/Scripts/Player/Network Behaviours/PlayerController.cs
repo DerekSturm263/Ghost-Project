@@ -1,6 +1,7 @@
 using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(NetworkTransform), typeof(NetworkRigidbody), typeof(NetworkAnimator))]
@@ -17,14 +18,15 @@ public class PlayerController : NetworkBehaviour
     private Vector2 _movementAmount;
     private MovementSettings.PhysicsState _physicsState;
     private float _movementLerp;
+    private float _movementTime;
 
     [SerializeField] private TurnSettings _turnSettings;
     private Vector2 _turnRot;
 
-    [SerializeField] private RunSettings _runSettings;
+    [SerializeField] private SpeedSettings _speedSettings;
     private bool _isRunning;
 
-    [SerializeField] private CrouchSettings _crouchSettings;
+    [SerializeField] private HeightSettings _heightSettings;
     private bool _isCrouching;
 
     [SerializeField] private JumpSettings _jumpSettings;
@@ -43,13 +45,10 @@ public class PlayerController : NetworkBehaviour
         _anim = GetComponent<Animator>();
         _head = GetComponentInChildren<Camera>();
 
-        _player = new(InputSystem.devices[0]);
+        _player = new(null);
 
         if (true || IsOwner)
         {
-            _player.Controls.Player.Move.started += StartMove;
-            _player.Controls.Player.Move.canceled += EndMove;
-            _player.Controls.Player.Turn.performed += Turn;
             _player.Controls.Player.Run.started += StartRun;
             _player.Controls.Player.Run.canceled += EndRun;
             _player.Controls.Player.Crouch.started += StartCrouch;
@@ -64,6 +63,11 @@ public class PlayerController : NetworkBehaviour
 
     private void Update()
     {
+        //_player.Controls.Player.Move.started += StartMove;
+        //_player.Controls.Player.Move.canceled += EndMove;
+        Move(_player.Controls.Player.Move.ReadValue<Vector2>());
+        Turn(_player.Controls.Player.Turn.ReadValue<Vector2>());
+
         _isGrounded = _groundCheck.GetHitInfo(transform).HasValue;
 
         if (_jumpTime > 0)
@@ -75,29 +79,33 @@ public class PlayerController : NetworkBehaviour
         _groundCheck.Draw(transform);
     }
 
-    public void StartMove(InputAction.CallbackContext ctx)
+    public void Move(InputAction.CallbackContext ctx) => Move(ctx.ReadValue<Vector2>());
+
+    public void Move(Vector2 amount)
     {
-        Debug.Log("Starting move!");
+        if (amount == Vector2.zero)
+            _movementTime = 0;
+        else
+            _movementTime += Time.deltaTime;
+
+        Debug.Log($"Moving by {amount}");
+
+        Vector3 adjustedAmount = _head.transform.forward * amount.y + _head.transform.right * amount.x;
+        adjustedAmount.y = 0;
+
+        _rb.velocity = adjustedAmount * _speedSettings.Evaluate(_isRunning, _isCrouching);
     }
 
-    public void UpdateMove()
-    {
-        Debug.Log("Updating move!");
-    }
+    public void Turn(InputAction.CallbackContext ctx) => Turn(ctx.ReadValue<Vector2>());
 
-    public void EndMove(InputAction.CallbackContext ctx)
+    public void Turn(Vector2 amount)
     {
-        Debug.Log("Ending move!");
-    }
+        Debug.Log($"Turning by {amount}");
 
-    public void Turn(InputAction.CallbackContext ctx)
-    {
-        Debug.Log("Turning!");
-
-        _turnRot = _turnSettings.Evaluate(ctx.ReadValue<Vector2>(), _turnRot);
+        _turnRot = _turnSettings.Evaluate(amount, _turnRot);
 
         _head.transform.rotation = Quaternion.Euler(-_turnRot.x, _turnRot.y, 0);
-        _head.transform.localPosition = new(0, _crouchSettings.Evaluate(_isCrouching), 0);
+        _head.transform.localPosition = new(0, _heightSettings.Evaluate(_isCrouching, _movementTime, _rb.velocity.magnitude), 0);
     }
 
     public void StartRun(InputAction.CallbackContext ctx)

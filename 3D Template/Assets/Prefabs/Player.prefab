@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: -7359116630496518339}
   - component: {fileID: 161697369331636408}
   - component: {fileID: -5683663941289790903}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 161697369331636415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.21, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 859788732049293634}
@@ -83,7 +83,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &-7236604452750993488
 MonoBehaviour:
@@ -241,14 +241,50 @@ MonoBehaviour:
     _topSpeed: 0
   _turnSettings:
     _verticalRange:
-      _min: -50
-      _max: 50
-    _sensitivity: 10
-  _runSettings:
-    _runMultiplier: 0
-  _crouchSettings:
-    _defaultHeight: 0
-    _crouchHeight: 0
+      _min: -75
+      _max: 75
+    _sensitivity: 6
+  _speedSettings:
+    _crouchMultiplier: 2
+    _walkMultiplier: 6
+    _runMultiplier: 13
+  _heightSettings:
+    _defaultHeight: 5
+    _crouchHeight: 1
+    _headBob:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.76666665
+      - serializedVersion: 3
+        time: 0.5
+        value: 0.9
+        inSlope: -0.010734559
+        outSlope: 0.01056704
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0.5416666
+        outWeight: 0.48333335
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _bobFrequency: 0.3
   _jumpSettings:
     _curve:
       serializedVersion: 2
@@ -299,7 +335,7 @@ MonoBehaviour:
           _min: {x: 0, y: 0, z: 0}
           _max: {x: 0, y: 0, z: 0}
         _radius: 0
-      _index: 1
+      _index: 0
 --- !u!114 &-5683663941289790903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +360,7 @@ GameObject:
   - component: {fileID: 8750248002859283723}
   - component: {fileID: 6720541429748668073}
   - component: {fileID: 5339529067447284416}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +413,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 127
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

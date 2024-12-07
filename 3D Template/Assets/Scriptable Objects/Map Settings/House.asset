@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1f0ace6348c9b7469f932aa187e21db, type: 3}
-  m_Name: Default
+  m_Name: House
   m_EditorClassIdentifier: 
   _rooms:
   - _name: Empty
@@ -32,34 +32,10 @@ MonoBehaviour:
       - _elements: 010000010000010000
         _width: 3
         _height: 3
-      - _elements: 010101000001000001
-        _width: 3
-        _height: 3
-      - _elements: 000001000001010101
-        _width: 3
-        _height: 3
-      - _elements: 010000010000010101
-        _width: 3
-        _height: 3
-      - _elements: 010101010000010000
-        _width: 3
-        _height: 3
       - _elements: 000000000000000000
         _width: 3
         _height: 3
       _northEast:
-      - _elements: 010101000000000000
-        _width: 3
-        _height: 3
-      - _elements: 000001000001000001
-        _width: 3
-        _height: 3
-      - _elements: 000000000000010101
-        _width: 3
-        _height: 3
-      - _elements: 010000010000010000
-        _width: 3
-        _height: 3
       - _elements: 010101000001000001
         _width: 3
         _height: 3
@@ -88,34 +64,10 @@ MonoBehaviour:
       - _elements: 010000010000010000
         _width: 3
         _height: 3
-      - _elements: 010101000001000001
-        _width: 3
-        _height: 3
-      - _elements: 000001000001010101
-        _width: 3
-        _height: 3
-      - _elements: 010000010000010101
-        _width: 3
-        _height: 3
-      - _elements: 010101010000010000
-        _width: 3
-        _height: 3
       - _elements: 000000000000000000
         _width: 3
         _height: 3
       _southEast:
-      - _elements: 010101000000000000
-        _width: 3
-        _height: 3
-      - _elements: 000001000001000001
-        _width: 3
-        _height: 3
-      - _elements: 000000000000010101
-        _width: 3
-        _height: 3
-      - _elements: 010000010000010000
-        _width: 3
-        _height: 3
       - _elements: 010101000001000001
         _width: 3
         _height: 3
@@ -144,34 +96,10 @@ MonoBehaviour:
       - _elements: 010000010000010000
         _width: 3
         _height: 3
-      - _elements: 010101000001000001
-        _width: 3
-        _height: 3
-      - _elements: 000001000001010101
-        _width: 3
-        _height: 3
-      - _elements: 010000010000010101
-        _width: 3
-        _height: 3
-      - _elements: 010101010000010000
-        _width: 3
-        _height: 3
       - _elements: 000000000000000000
         _width: 3
         _height: 3
       _southWest:
-      - _elements: 010101000000000000
-        _width: 3
-        _height: 3
-      - _elements: 000001000001000001
-        _width: 3
-        _height: 3
-      - _elements: 000000000000010101
-        _width: 3
-        _height: 3
-      - _elements: 010000010000010000
-        _width: 3
-        _height: 3
       - _elements: 010101000001000001
         _width: 3
         _height: 3
@@ -200,34 +128,10 @@ MonoBehaviour:
       - _elements: 010000010000010000
         _width: 3
         _height: 3
-      - _elements: 010101000001000001
-        _width: 3
-        _height: 3
-      - _elements: 000001000001010101
-        _width: 3
-        _height: 3
-      - _elements: 010000010000010101
-        _width: 3
-        _height: 3
-      - _elements: 010101010000010000
-        _width: 3
-        _height: 3
       - _elements: 000000000000000000
         _width: 3
         _height: 3
       _northWest:
-      - _elements: 010101000000000000
-        _width: 3
-        _height: 3
-      - _elements: 000001000001000001
-        _width: 3
-        _height: 3
-      - _elements: 000000000000010101
-        _width: 3
-        _height: 3
-      - _elements: 010000010000010000
-        _width: 3
-        _height: 3
       - _elements: 010101000001000001
         _width: 3
         _height: 3
@@ -253,9 +157,6 @@ MonoBehaviour:
       - _elements: 010101000000000000
         _width: 3
         _height: 3
-      - _elements: 000001000001000001
-        _width: 3
-        _height: 3
       - _elements: 010000010000010000
         _width: 3
         _height: 3
@@ -263,9 +164,6 @@ MonoBehaviour:
         _width: 3
         _height: 3
       _northEast:
-      - _elements: 010101000001000001
-        _width: 3
-        _height: 3
       - _elements: 000001000001010101
         _width: 3
         _height: 3
@@ -288,16 +186,7 @@ MonoBehaviour:
       - _elements: 010101000001000001
         _width: 3
         _height: 3
-      - _elements: 000001000001010101
-        _width: 3
-        _height: 3
       - _elements: 010101000000000000
-        _width: 3
-        _height: 3
-      - _elements: 000001000001000001
-        _width: 3
-        _height: 3
-      - _elements: 000000000000010101
         _width: 3
         _height: 3
       - _elements: 000000000000000000
@@ -305,9 +194,6 @@ MonoBehaviour:
         _height: 3
       _southEast:
       - _elements: 000001000001010101
-        _width: 3
-        _height: 3
-      - _elements: 010101010000010000
         _width: 3
         _height: 3
       - _elements: 010101000000000000
@@ -326,16 +212,7 @@ MonoBehaviour:
         _width: 3
         _height: 3
       _south:
-      - _elements: 000001000001010101
-        _width: 3
-        _height: 3
       - _elements: 010000010000010101
-        _width: 3
-        _height: 3
-      - _elements: 000001000001000001
-        _width: 3
-        _height: 3
-      - _elements: 000000000000010101
         _width: 3
         _height: 3
       - _elements: 010000010000010000
@@ -346,9 +223,6 @@ MonoBehaviour:
         _height: 3
       _southWest:
       - _elements: 000001000001010101
-        _width: 3
-        _height: 3
-      - _elements: 010000010000010101
         _width: 3
         _height: 3
       - _elements: 010101000000000000
@@ -368,9 +242,6 @@ MonoBehaviour:
         _height: 3
       _west:
       - _elements: 010101000000000000
-        _width: 3
-        _height: 3
-      - _elements: 000000000000010101
         _width: 3
         _height: 3
       - _elements: 010000010000010000
@@ -408,6 +279,9 @@ MonoBehaviour:
       - _elements: 010000010000010000
         _width: 3
         _height: 3
+      - _elements: 010101000000000000
+        _width: 3
+        _height: 3
       - _elements: 000000000000000000
         _width: 3
         _height: 3
@@ -472,9 +346,6 @@ MonoBehaviour:
         _width: 3
         _height: 3
       _south:
-      - _elements: 000000000000010101
-        _width: 3
-        _height: 3
       - _elements: 010101000000000000
         _width: 3
         _height: 3
@@ -550,11 +421,13 @@ MonoBehaviour:
       - _elements: 000000000000000000
         _width: 3
         _height: 3
+  _shape:
+    _shapeType: 2
   _filterMode: 0
   _roomPrefab: {fileID: 6756081523301850608, guid: afbe83c3d44f0f24faaf1df6eda8bf48,
     type: 3}
-  _dimensions: {x: 100, y: 12}
-  _spacing: {x: 5, y: 5}
+  _dimensions: {x: 10, y: 6}
+  _spacing: {x: 7.5, y: 7.5}
   _seed:
-    _nonNullValue: 10000
-    _hasValue: 0
+    _nonNullValue: 10000000
+    _hasValue: 1

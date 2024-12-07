@@ -52,7 +52,7 @@ public class MapSettingsPreview : ObjectPreview
         {
             for (int x = 0; x < roomTexture.width; ++x)
             {
-                colors[y * roomTexture.width + x] = room.Layout[x, 2 - y] ? Color.white : Color.clear;
+                colors[y * roomTexture.width + x] = room.Layout[x, room.Layout.Height - 1 - y] ? Color.white : Color.clear;
             }
         }
         

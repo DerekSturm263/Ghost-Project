@@ -7,6 +7,8 @@ public struct Grid<T> : System.IEquatable<Grid<T>>, IRotatable<Grid<T>>
 {
     [SerializeField][HideInInspector] private T[] _elements;
     [SerializeField][HideInInspector] private int _width, _height;
+    public readonly int Width => _width;
+    public readonly int Height => _height;
 
     public readonly T this[System.Index x, System.Index y]
     {

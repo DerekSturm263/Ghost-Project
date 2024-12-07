@@ -7,6 +7,9 @@ public class MapSettings : ScriptableObject
     [SerializeField][HideInInspector] private List<Room> _rooms;
     public List<Room> Rooms => _rooms;
 
+    [SerializeField] private GenerationShape _shape;
+    public GenerationShape Shape => _shape;
+
     [SerializeField] private EntropicList<Room>.FilterMode _filterMode;
     public EntropicList<Room>.FilterMode FilterMode => _filterMode;
 

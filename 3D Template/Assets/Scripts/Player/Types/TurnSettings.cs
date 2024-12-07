@@ -14,6 +14,8 @@ public struct TurnSettings
         newRot.y += delta.x * _sensitivity;
         newRot.x += delta.y * _sensitivity;
 
+        newRot.x = Mathf.Clamp(newRot.x, _verticalRange.Min, _verticalRange.Max);
+
         return newRot;
     }
 }
