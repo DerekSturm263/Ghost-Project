@@ -4,7 +4,7 @@ using UnityEngine;
 public struct CastHelper
 {
     [System.Serializable]
-    public struct BoxCastSettings
+    public struct BoxCastSettings : ICastable
     {
         [SerializeField] private Vector3 _offset;
         [SerializeField] private Vector3 _size;
@@ -12,10 +12,25 @@ public struct CastHelper
 
         public readonly RaycastHit? GetHitInfo(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction)
         {
-            if (Physics.BoxCast(position + _offset, _size, direction, out RaycastHit hit, _rotation, maxDistance, layerMask, triggerInteraction))
+            if (TryGetHitInfo(position, direction, maxDistance, layerMask, triggerInteraction, out RaycastHit hit))
                 return hit;
 
             return null;
+        }
+
+        public readonly bool TryGetHitInfo(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction, out RaycastHit hit)
+        {
+            return Physics.BoxCast(position + _offset, _size, direction, out hit, _rotation, maxDistance, layerMask, triggerInteraction);
+        }
+
+        public readonly RaycastHit[] GetHitInfoAll(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction)
+        {
+            return Physics.BoxCastAll(position + _offset, _size, direction, _rotation, maxDistance, layerMask, triggerInteraction);
+        }
+
+        public readonly int GetHitInfoNonAlloc(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction, RaycastHit[] results)
+        {
+            return Physics.BoxCastNonAlloc(position + _offset, _size, direction, results, _rotation, maxDistance, layerMask, triggerInteraction);
         }
 
         public readonly void Draw(Vector3 position)
@@ -25,17 +40,32 @@ public struct CastHelper
     }
 
     [System.Serializable]
-    public struct SphereCastSettings
+    public struct SphereCastSettings : ICastable
     {
         [SerializeField] private Vector3 _offset;
         [SerializeField] private float _radius;
 
         public readonly RaycastHit? GetHitInfo(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction)
         {
-            if (Physics.SphereCast(position + _offset, _radius, direction, out RaycastHit hit, maxDistance, layerMask, triggerInteraction))
+            if (TryGetHitInfo(position, direction, maxDistance, layerMask, triggerInteraction, out RaycastHit hit))
                 return hit;
 
             return null;
+        }
+
+        public readonly bool TryGetHitInfo(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction, out RaycastHit hit)
+        {
+            return Physics.SphereCast(position + _offset, _radius, direction, out hit, maxDistance, layerMask, triggerInteraction);
+        }
+
+        public readonly RaycastHit[] GetHitInfoAll(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction)
+        {
+            return Physics.SphereCastAll(position + _offset, _radius, direction, maxDistance, layerMask, triggerInteraction);
+        }
+
+        public readonly int GetHitInfoNonAlloc(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction, RaycastHit[] results)
+        {
+            return Physics.SphereCastNonAlloc(position + _offset, _radius, direction, results, maxDistance, layerMask, triggerInteraction);
         }
 
         public readonly void Draw(Vector3 position)
@@ -45,17 +75,32 @@ public struct CastHelper
     }
 
     [System.Serializable]
-    public struct CapsuleCastSettings
+    public struct CapsuleCastSettings : ICastable
     {
         [SerializeField] private Range<Vector3> _points;
         [SerializeField] private float _radius;
 
         public readonly RaycastHit? GetHitInfo(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction)
         {
-            if (Physics.CapsuleCast(position + _points.Min, position + _points.Max, _radius, direction, out RaycastHit hit, maxDistance, layerMask, triggerInteraction))
+            if (TryGetHitInfo(position, direction, maxDistance, layerMask, triggerInteraction, out RaycastHit hit))
                 return hit;
 
             return null;
+        }
+
+        public readonly bool TryGetHitInfo(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction, out RaycastHit hit)
+        {
+            return Physics.CapsuleCast(position + _points.Min, position + _points.Max, _radius, direction, out hit, maxDistance, layerMask, triggerInteraction);
+        }
+
+        public readonly RaycastHit[] GetHitInfoAll(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction)
+        {
+            return Physics.CapsuleCastAll(position + _points.Min, position + _points.Max, _radius, direction, maxDistance, layerMask, triggerInteraction);
+        }
+
+        public readonly int GetHitInfoNonAlloc(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction, RaycastHit[] results)
+        {
+            return Physics.CapsuleCastNonAlloc(position + _points.Min, position + _points.Max, _radius, direction, results, maxDistance, layerMask, triggerInteraction);
         }
 
         public readonly void Draw(Vector3 position)
@@ -65,11 +110,29 @@ public struct CastHelper
     }
 
     [System.Serializable]
-    public struct LineCastSettings
+    public struct RayCastSettings : ICastable
     {
         public readonly RaycastHit? GetHitInfo(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction)
         {
+            if (TryGetHitInfo(position, direction, maxDistance, layerMask, triggerInteraction, out RaycastHit hit))
+                return hit;
+
             return null;
+        }
+
+        public readonly bool TryGetHitInfo(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction, out RaycastHit hit)
+        {
+            return Physics.Raycast(position, direction, out hit, maxDistance, layerMask, triggerInteraction);
+        }
+
+        public readonly RaycastHit[] GetHitInfoAll(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction)
+        {
+            return Physics.RaycastAll(position, direction, maxDistance, layerMask, triggerInteraction);
+        }
+
+        public readonly int GetHitInfoNonAlloc(Vector3 position, Vector3 direction, float maxDistance, LayerMask layerMask, QueryTriggerInteraction triggerInteraction, RaycastHit[] results)
+        {
+            return Physics.RaycastNonAlloc(position, direction, results, maxDistance, layerMask, triggerInteraction);
         }
 
         public readonly void Draw(Vector3 position)
@@ -83,25 +146,30 @@ public struct CastHelper
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private QueryTriggerInteraction _triggerInteraction;
 
-    [SerializeField] private Variant<BoxCastSettings, SphereCastSettings, CapsuleCastSettings, LineCastSettings> _settings;
+    [SerializeField] private Variant<BoxCastSettings, SphereCastSettings, CapsuleCastSettings, RayCastSettings> _settings;
 
     public readonly RaycastHit? GetHitInfo(Transform transform)
     {
-        if (_settings.GetUnderlyingType() == typeof(BoxCastSettings))
-            return _settings.Get<BoxCastSettings>().GetHitInfo(transform.position, _direction, _maxDistance, _layerMask, _triggerInteraction);
-        else if (_settings.GetUnderlyingType() == typeof(SphereCastSettings))
-            return _settings.Get<SphereCastSettings>().GetHitInfo(transform.position, _direction, _maxDistance, _layerMask, _triggerInteraction);
-        else
-            return _settings.Get<CapsuleCastSettings>().GetHitInfo(transform.position, _direction, _maxDistance, _layerMask, _triggerInteraction);
+        return _settings.Get<ICastable>().GetHitInfo(transform.position, _direction, _maxDistance, _layerMask, _triggerInteraction);
+    }
+
+    public readonly bool TryGetHitInfo(Transform transform, out RaycastHit hit)
+    {
+        return _settings.Get<ICastable>().TryGetHitInfo(transform.position, _direction, _maxDistance, _layerMask, _triggerInteraction, out hit);
+    }
+
+    public readonly RaycastHit[] GetHitInfoAll(Transform transform)
+    {
+        return _settings.Get<ICastable>().GetHitInfoAll(transform.position, _direction, _maxDistance, _layerMask, _triggerInteraction);
+    }
+
+    public readonly int GetHitInfoNonAlloc(Transform transform, RaycastHit[] results)
+    {
+        return _settings.Get<ICastable>().GetHitInfoNonAlloc(transform.position, _direction, _maxDistance, _layerMask, _triggerInteraction, results);
     }
 
     public readonly void Draw(Transform transform)
     {
-        if (_settings.GetUnderlyingType() == typeof(BoxCastSettings))
-            _settings.Get<BoxCastSettings>().Draw(transform.position);
-        else if (_settings.GetUnderlyingType() == typeof(SphereCastSettings))
-            _settings.Get<SphereCastSettings>().Draw(transform.position);
-        else
-            _settings.Get<CapsuleCastSettings>().Draw(transform.position);
+        _settings.Get<ICastable>().Draw(transform.position);
     }
 }

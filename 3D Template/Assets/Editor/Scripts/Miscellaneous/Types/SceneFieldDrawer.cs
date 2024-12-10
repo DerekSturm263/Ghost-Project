@@ -8,8 +8,8 @@ public class SceneFieldPropertyDrawer : PropertyDrawer
     {
         EditorGUI.BeginProperty(_position, GUIContent.none, _property);
 
-        SerializedProperty sceneAsset = _property.FindPropertyRelative("_SceneAsset");
-        SerializedProperty sceneName = _property.FindPropertyRelative("_SceneName");
+        SerializedProperty sceneAsset = _property.FindPropertyRelative("_sceneAsset");
+        SerializedProperty sceneName = _property.FindPropertyRelative("_sceneName");
 
         _position = EditorGUI.PrefixLabel(_position, GUIUtility.GetControlID(FocusType.Passive), _label);
 
@@ -28,6 +28,7 @@ public class SceneFieldPropertyDrawer : PropertyDrawer
                     sceneName.stringValue = "";
             }
         }
+
         EditorGUI.EndProperty();
     }
 }

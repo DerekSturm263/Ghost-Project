@@ -8,6 +8,8 @@ internal class GridDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
+        EditorGUI.BeginProperty(position, label, property);
+
         SerializedProperty width = property.FindPropertyRelative("_width");
         SerializedProperty height = property.FindPropertyRelative("_height");
         SerializedProperty elements = property.FindPropertyRelative("_elements");
@@ -85,6 +87,8 @@ internal class GridDrawer : PropertyDrawer
             for (int i = 0; i < width.intValue; ++i)
                 elements.DeleteArrayElementAtIndex(0);
         }
+
+        EditorGUI.EndProperty();
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

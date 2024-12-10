@@ -6,6 +6,8 @@ internal class RoomDrawer : PropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
+        EditorGUI.BeginProperty(position, label, property);
+
         SerializedProperty name = property.FindPropertyRelative("_name");
         SerializedProperty layout = property.FindPropertyRelative("_layout");
         SerializedProperty roomsToDirections = property.FindPropertyRelative("_roomsToDirections");
@@ -19,6 +21,8 @@ internal class RoomDrawer : PropertyDrawer
 
         Rect directionalRect = new(position.x, position.y + EditorGUIUtility.singleLineHeight + height + 2, position.width, height);
         EditorGUI.PropertyField(directionalRect, roomsToDirections);
+
+        EditorGUI.EndProperty();
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

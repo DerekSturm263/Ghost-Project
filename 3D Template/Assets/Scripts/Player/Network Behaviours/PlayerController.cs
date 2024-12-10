@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(NetworkTransform), typeof(NetworkRigidbody), typeof(NetworkAnimator))]
@@ -14,30 +14,24 @@ public class PlayerController : NetworkBehaviour
     private Animator _anim;
     private Camera _head;
 
-    [SerializeField] private MovementSettings _movementSettings;
-    private Vector2 _movementAmount;
-    private MovementSettings.PhysicsState _physicsState;
-    private float _movementLerp;
     private float _movementTime;
-
-    [SerializeField] private TurnSettings _turnSettings;
+    private bool _isRunning;
+    private bool _isCrouching;
     private Vector2 _turnRot;
 
     [SerializeField] private SpeedSettings _speedSettings;
-    private bool _isRunning;
-
     [SerializeField] private HeightSettings _heightSettings;
-    private bool _isCrouching;
-
+    [SerializeField] private FOVSettings _fovSettings;
+    [SerializeField] private TurnSettings _turnSettings;
     [SerializeField] private JumpSettings _jumpSettings;
-    private float _originalY;
-    private float _jumpTime;
-
     [SerializeField] private FightSettings _fightSettings;
     [SerializeField] private CaptureSettings _captureSettings;
 
     [SerializeField] private CastHelper _groundCheck;
     private bool _isGrounded;
+
+    [SerializeField] private UnityEvent _onStartRunning;
+    [SerializeField] private UnityEvent _onEndRunning;
 
     private void Awake()
     {
@@ -63,15 +57,12 @@ public class PlayerController : NetworkBehaviour
 
     private void Update()
     {
-        //_player.Controls.Player.Move.started += StartMove;
-        //_player.Controls.Player.Move.canceled += EndMove;
         Move(_player.Controls.Player.Move.ReadValue<Vector2>());
         Turn(_player.Controls.Player.Turn.ReadValue<Vector2>());
 
         _isGrounded = _groundCheck.GetHitInfo(transform).HasValue;
 
-        if (_jumpTime > 0)
-            UpdateJump();
+        _head.fieldOfView = Mathf.Lerp(_head.fieldOfView, _fovSettings.Evaluate(_isCrouching, _isRunning), Time.deltaTime * _fovSettings.FOVChangeSpeed);
     }
 
     private void OnDrawGizmos()
@@ -88,20 +79,28 @@ public class PlayerController : NetworkBehaviour
         else
             _movementTime += Time.deltaTime;
 
-        Debug.Log($"Moving by {amount}");
+        Vector3 adjustedAmount;
+        Vector3 velocity;
 
-        Vector3 adjustedAmount = _head.transform.forward * amount.y + _head.transform.right * amount.x;
-        adjustedAmount.y = 0;
+        //if (_isGrounded)
+        //{
+            adjustedAmount = _head.transform.forward * amount.y + _head.transform.right * amount.x;
+        //}
+        //else
+        //{
+            //adjustedAmount = Vector3.Lerp(_rb.velocity, _head.transform.forward * amount.y + _head.transform.right * amount.x, Time.deltaTime * 5);
+        //}
 
-        _rb.velocity = adjustedAmount * _speedSettings.Evaluate(_isRunning, _isCrouching);
+        velocity = adjustedAmount * _speedSettings.Evaluate(_isRunning, _isCrouching);
+        velocity.y = _rb.velocity.y;
+
+        _rb.velocity = velocity;
     }
 
     public void Turn(InputAction.CallbackContext ctx) => Turn(ctx.ReadValue<Vector2>());
 
     public void Turn(Vector2 amount)
     {
-        Debug.Log($"Turning by {amount}");
-
         _turnRot = _turnSettings.Evaluate(amount, _turnRot);
 
         _head.transform.rotation = Quaternion.Euler(-_turnRot.x, _turnRot.y, 0);
@@ -113,6 +112,7 @@ public class PlayerController : NetworkBehaviour
         Debug.Log("Starting run!");
 
         _isRunning = true;
+        _onStartRunning.Invoke();
     }
 
     public void EndRun(InputAction.CallbackContext ctx)
@@ -120,6 +120,7 @@ public class PlayerController : NetworkBehaviour
         Debug.Log("Ending run!");
 
         _isRunning = false;
+        _onEndRunning.Invoke();
     }
 
     public void StartCrouch(InputAction.CallbackContext ctx)
@@ -138,25 +139,17 @@ public class PlayerController : NetworkBehaviour
 
     public void StartJump(InputAction.CallbackContext ctx)
     {
+        if (!_isGrounded)
+            return;
+
         Debug.Log("Starting jump!");
 
-        _jumpTime = 0.01f;
-        _originalY = transform.position.y;
-    }
-
-    public void UpdateJump()
-    {
-        Debug.Log("Updating jump!");
-
-        _jumpTime += Time.deltaTime;
-        _rb.position.Set(_rb.position.x, _jumpSettings.Evaluate(_jumpTime), _rb.position.z);
+        _rb.AddForce(Vector3.up * _jumpSettings.Evaluate(), ForceMode.Impulse);
     }
 
     public void EndJump(InputAction.CallbackContext ctx)
     {
         Debug.Log("Ending jump!");
-
-        _jumpTime = 0;
     }
 
     public void Fight(InputAction.CallbackContext ctx)

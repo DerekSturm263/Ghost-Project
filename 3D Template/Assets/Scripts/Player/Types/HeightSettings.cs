@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-[Serializable]
+[System.Serializable]
 public struct HeightSettings
 {
     [SerializeField] private float _defaultHeight;

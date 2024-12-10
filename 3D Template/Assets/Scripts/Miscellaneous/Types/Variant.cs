@@ -12,9 +12,8 @@ public struct Variant<T1, T2>
     {
         return _index switch
         {
-            0 => (T)(object)_value1,
             1 => (T)(object)_value2,
-            _ => default
+            _ => (T)(object)_value1
         };
     }
 
@@ -22,9 +21,8 @@ public struct Variant<T1, T2>
     {
         return _index switch
         {
-            0 => _value1.GetType(),
             1 => _value2.GetType(),
-            _ => default
+            _ => _value1.GetType()
         };
     }
 }
@@ -42,10 +40,9 @@ public struct Variant<T1, T2, T3>
     {
         return _index switch
         {
-            0 => (T)(object)_value1,
             1 => (T)(object)_value2,
             2 => (T)(object)_value3,
-            _ => default
+            _ => (T)(object)_value1
         };
     }
 
@@ -53,10 +50,9 @@ public struct Variant<T1, T2, T3>
     {
         return _index switch
         {
-            0 => _value1.GetType(),
             1 => _value2.GetType(),
             2 => _value3.GetType(),
-            _ => default
+            _ => _value1.GetType()
         };
     }
 }
@@ -75,11 +71,10 @@ public struct Variant<T1, T2, T3, T4>
     {
         return _index switch
         {
-            0 => (T)(object)_value1,
             1 => (T)(object)_value2,
             2 => (T)(object)_value3,
             3 => (T)(object)_value4,
-            _ => default
+            _ => (T)(object)_value1
         };
     }
 
@@ -87,11 +82,10 @@ public struct Variant<T1, T2, T3, T4>
     {
         return _index switch
         {
-            0 => _value1.GetType(),
             1 => _value2.GetType(),
             2 => _value3.GetType(),
             3 => _value4.GetType(),
-            _ => default
+            _ => _value1.GetType()
         };
     }
 }

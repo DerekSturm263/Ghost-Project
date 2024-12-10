@@ -15,6 +15,19 @@ public static class EditorHelper
         position.y += EditorGUI.GetPropertyHeight(prop) + 2;
     }
 
+    public static void DrawProperties(Rect position, SerializedProperty property, params string[] relativePropertyPath)
+    {
+        foreach (string propertyPath in relativePropertyPath)
+        {
+            SerializedProperty prop = property.FindPropertyRelative(propertyPath);
+
+            float height = EditorGUI.GetPropertyHeight(prop);
+            EditorGUI.PropertyField(new Rect(position.position, new(position.width, height)), prop);
+
+            position.y += height + 2;
+        }
+    }
+
     public static float CombinePropertyHeights(SerializedProperty property, params string[] relativePropertyPath)
     {
         float height = 2;

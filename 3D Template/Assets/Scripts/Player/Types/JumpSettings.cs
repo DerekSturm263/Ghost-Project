@@ -4,8 +4,8 @@ using UnityEngine;
 [Serializable]
 public struct JumpSettings
 {
-    [SerializeField] private AnimationCurve _curve;
-    [SerializeField] private float _multiplier;
-    
-    public readonly float Evaluate(float time) => _curve.Evaluate(time) * _multiplier;
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _endForce;
+
+    public readonly float Evaluate() => _jumpForce;
 }

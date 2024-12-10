@@ -19,9 +19,8 @@ public struct GenerationShape
     {
         ShapeType.SnakeLeftToRight => GetSnakeLeftToRightPositions(dimensions),
         ShapeType.SnakeTopToBottom => GetSnakeTopToBottomPositions(dimensions),
-        ShapeType.SpiralOutToIn => GetSpiralOutToInPositions(dimensions),
         ShapeType.SpiralInToOut => GetSpiralInToOutPositions(dimensions),
-        _ => default
+        _ => GetSpiralOutToInPositions(dimensions)
     };
 
     private static IEnumerable<Vector2Int> GetSnakeLeftToRightPositions(Vector2Int dimensions)

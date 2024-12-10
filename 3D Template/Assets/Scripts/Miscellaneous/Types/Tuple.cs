@@ -22,9 +22,8 @@ public struct Tuple<T1, T2> : ITuple
         {
             return index switch
             {
-                0 => _item1,
                 1 => _item2,
-                _ => default
+                _ => _item1
             };
         }
         set
