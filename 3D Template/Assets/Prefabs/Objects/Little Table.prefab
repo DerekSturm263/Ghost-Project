@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5754131367345738361}
   - component: {fileID: 5184628000182308534}
   - component: {fileID: 7839164472868501476}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Object Placer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   _chanceToGenerate: 0.35
   _objectPlacement:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   _positionRange:
     _min: {x: 0, y: 0, z: 0}
     _max: {x: 0, y: 0, z: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 8109161049941459628}
   - component: {fileID: 6299814921892869734}
   - component: {fileID: 4148092253261962426}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Little Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}

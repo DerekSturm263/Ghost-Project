@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Main Menu
   m_EditorClassIdentifier: 
   _scene:
-    _SceneAsset: {fileID: 102900000, guid: 3bfd38c9b0c059a40bb19e6a73aa6cb2, type: 3}
-    _SceneName: Main Menu
+    _sceneAsset: {fileID: 102900000, guid: a0ce20cea6d2ae047ae9fe39cd873cc3, type: 3}
+    _sceneName: Movement Test
   _transition: {fileID: 0}
   _loadParameters:
     m_LoadSceneMode: 0

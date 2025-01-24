@@ -62,7 +62,7 @@ public class PlayerController : NetworkBehaviour
 
         _isGrounded = _groundCheck.GetHitInfo(transform).HasValue;
 
-        _head.fieldOfView = Mathf.Lerp(_head.fieldOfView, _fovSettings.Evaluate(_isCrouching, _isRunning), Time.deltaTime * _fovSettings.FOVChangeSpeed);
+        _head.fieldOfView = Mathf.Lerp(_head.fieldOfView, _fovSettings.Evaluate(_isCrouching, _isRunning && _movementTime > 0), Time.deltaTime * _fovSettings.FOVChangeSpeed);
     }
 
     private void OnDrawGizmos()
@@ -74,10 +74,20 @@ public class PlayerController : NetworkBehaviour
 
     public void Move(Vector2 amount)
     {
+        if (_movementTime == 0 && amount != Vector2.zero && _isRunning)
+            _onStartRunning.Invoke();
+
         if (amount == Vector2.zero)
+        {
             _movementTime = 0;
+
+            if (_isRunning)
+                _onEndRunning.Invoke();
+        }
         else
+        {
             _movementTime += Time.deltaTime;
+        }
 
         Vector3 adjustedAmount;
         Vector3 velocity;
@@ -112,7 +122,9 @@ public class PlayerController : NetworkBehaviour
         Debug.Log("Starting run!");
 
         _isRunning = true;
-        _onStartRunning.Invoke();
+
+        if (_movementTime > 0)
+            _onStartRunning.Invoke();
     }
 
     public void EndRun(InputAction.CallbackContext ctx)
