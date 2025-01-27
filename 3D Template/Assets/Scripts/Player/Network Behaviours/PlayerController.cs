@@ -102,9 +102,9 @@ public class PlayerController : NetworkBehaviour
         //}
 
         velocity = adjustedAmount * _speedSettings.Evaluate(_isRunning, _isCrouching);
-        velocity.y = _rb.velocity.y;
+        velocity.y = _rb.linearVelocity.y;
 
-        _rb.velocity = velocity;
+        _rb.linearVelocity = velocity;
     }
 
     public void Turn(InputAction.CallbackContext ctx) => Turn(ctx.ReadValue<Vector2>());
@@ -114,7 +114,7 @@ public class PlayerController : NetworkBehaviour
         _turnRot = _turnSettings.Evaluate(amount, _turnRot);
 
         _head.transform.rotation = Quaternion.Euler(-_turnRot.x, _turnRot.y, 0);
-        _head.transform.localPosition = new(0, _heightSettings.Evaluate(_isCrouching, _movementTime, _rb.velocity.magnitude), 0);
+        _head.transform.localPosition = new(0, _heightSettings.Evaluate(_isCrouching, _movementTime, _rb.linearVelocity.magnitude), 0);
     }
 
     public void StartRun(InputAction.CallbackContext ctx)
